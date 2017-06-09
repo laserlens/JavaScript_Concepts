@@ -467,3 +467,100 @@ console.log('are arr1s values > 2: ' + arr3);
 console.log('are arr2s values > 3: ' + arr4 );
 
 // NOTE: When FUNCTIONAL PROGRAMING try hard not to MUTATE the return data.
+
+// NOTE: UNDERSCORE.JS a JavaScript library that went out of it's way to make it's lybrary understandable
+
+//NOTE: Example of underscore at work
+
+var arr6 = _.map(arr1, function (item) {
+  return item * 3;
+});
+console.log('arr6 using underscore to * arr1 by 3: ' + arr6);
+
+//NOTE: but do you need underscore.js anymore with ECS6
+
+var arr7 = arr1.map(function (item) {
+  return item * 3;
+});
+
+var arraysIsEqual = function(array1, array2) {
+  for (var i = 0; i < array1.length; ++i) {
+    if (array1[i] !== array2[i]) return false;
+  }
+   return true;
+}
+
+console.log('ECS6 built in .map function * arr1 by 3: ' + arr7);
+
+console.log('does ECS6 .map work just as well as underscore _.map: ' + arraysIsEqual(arr6,arr7));
+console.log('though underscore has some things ESC6 does not like _.isEqual: ' + _.isEqual(arr6,arr7));
+
+
+// NOTE: **OBJECT-0RIENTED** JavaScript and **PROTOTYPAL INHERITANCE**
+// NOTE: **INHERITANCE** one object gets access to the properties and methods of another object
+// NOTE: **CLASSICAL INHERITANCE** is very verbose and can create confusing code to read
+// NOTE: **PROTOTYPAL INHERITANCE** is flexible and easier to understand
+// NOTE: The **PROTOTYPE** ex: object.propertyNotInThisObject under the hood it's
+                            //object.PROTOTYPE.propertyNotInThisObject
+// NOTE: PROTOTYPE objects and ponit to another PROTOTYPE object ad so on,
+                //this is the **PROTOTYPE CHAIN** objects can share properties this way
+                //and the engine will always look at the main object properties first to get value
+
+//example of PROTOTYPAL INHERITANCE
+
+var person = {
+  firstName: 'Default',
+  lastName: 'Default',
+  getFullName: function () {
+    return this.firstName + ' ' + this.lastName;
+  }
+}
+
+var john = {
+  firstName: 'John',
+  lastName: 'Doe'
+}
+
+var jane = {
+  firstName: 'Jane',
+}
+
+//don;t EVER! do this for demo perposes ONLY!!!
+john.__proto__ = person; //set the john objects PROTOTYPE to person and INHERITES it's properties
+console.log('Object john inherited getFullName from Object person so full name is ' + john.getFullName())
+jane.__proto__ = john;
+console.log('the PROTOTYPE CHAIN first looking for value in jane object before moving to john: '
+            + jane.firstName + ' ' + jane.lastName);
+
+
+//now lets do it without usin __proto__
+
+var jack = {
+  firstName: 'Jack',
+  lastName: 'Doe',
+  fullName: function () {
+    var thisPersonName = Object.create(person);//jack.fullName inherits from person
+    thisPersonName.firstName = this.firstName;
+    thisPersonName.lastName = this.lastName;
+    return thisPersonName.getFullName();
+  }
+};
+
+var jill = Object.create(jack); //jill inherited from jack and jack.fullName inherited from person
+
+jill.firstName = 'Jill'; //creates own propertie firstName on jill
+
+console.log('who went up the hill: ' + jack.fullName()+' & ' + jill.fullName());
+
+
+// NOTE: EVERTHING in JavaScript is an OBJECT or a PRIMITIVE
+// NOTE: and OBJECT can list and change it's on properties and methods this called **REFLECTION**
+
+//loops through object and labels it properties prop
+for (var prop in john) {
+  if (john.hasOwnProperty(prop)) {//i only list it if it actual is on the john object
+      console.log(prop + ': ' + john[prop]);
+  }
+}
+
+// NOTE: **FUNCTION CONSTRUTORS** bulding objects
