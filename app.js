@@ -564,3 +564,42 @@ for (var prop in john) {
 }
 
 // NOTE: **FUNCTION CONSTRUTORS** bulding objects
+// NOTE: JavaScript Engine has built in FUNCTION CONSTRUTORS ex: Number() and String()
+// NOTE: If it's a FUNCTION CONSTRUTORS you begin it with new
+// NOTE: momentjs is a greate lybrary for dates rather then new Date()
+
+// NOTE: **POLYFILL** code that adds a feature with the engine may lack
+
+// NOTE: CLASSES in JavaScript ex:
+
+class Person {//even though it says class it really is an object
+  constructor(firstName,lastName) {//must have a constructor
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  greet(){
+    return 'Hi ' + firstName;
+  }
+}
+var jimmy = new Person ('jimmy', 'john');//how to invoke the 'class'
+
+// NOTE: in an attempt to make Java and other OOP languages happy you can also do:
+
+class InformalPerson extends Person {//like in jave you can extends in a class to set INHERITANCE
+  constructor(firstName,lastName){
+    super(firstName,lastName);
+  }
+  greet(){
+    return 'Yo ' + firstName;
+  }
+}
+
+// NOTE: most people feel class in JavaScript is just SYNTACTIC SUGAR
+
+// NOTE: typeof, instanceof, figuring out what something is
+// NOTE: typeof tells you the type of the OBJECT
+// NOTE: instanceof tells you if an object is an instance of another object
+// NOTE: Arrays need to be stringed and the call the array name to get type of
+            //Object.prototype.toString.call(arr); instead of tyoeof
+
+// NOTE: typeof null is bug
