@@ -599,7 +599,15 @@ class InformalPerson extends Person {//like in jave you can extends in a class t
 // NOTE: typeof, instanceof, figuring out what something is
 // NOTE: typeof tells you the type of the OBJECT
 // NOTE: instanceof tells you if an object is an instance of another object
-// NOTE: Arrays need to be stringed and the call the array name to get type of
+// NOTE: Arrays need to be stringed and then call the array name to get type of
             //Object.prototype.toString.call(arr); instead of tyoeof
 
 // NOTE: typeof null is bug
+
+// NOTE: ;(function(global,<if bringing in outside lybrary>){//code}(window,<lybrary>));
+          //above is the code you would write to begin your lybrary or framework
+          //at the end of the each method/function return this; to make chainable methods
+
+// NOTE: **TRANSPILE** is to convert the syntax of one language, to another
+// NOTE: JavaScript engine uses TRANSPILERS to do this a common one is TypeScript
+// NOTE: TypeScript has alot of methods that already are avaliable in ECS6
